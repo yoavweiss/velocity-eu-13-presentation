@@ -40,50 +40,81 @@
 					<h1>The Responsive Images Saga</h1>
                     <a href="https://twitter.com/yoavweiss">Yoav Weiss</a>
                     <p>Edge - NYC, September 2013</p>
-                    <p><a
-                        href="https://yoavweiss.github.io/respimg-edge-presentation/">yoavweiss.github.io/respimg-edge-presentation</a></p>
+                    <p><a href="https://yoavweiss.github.io/respimg-edge-presentation/">yoavweiss.github.io/respimg-edge-presentation</a></p>
+                    <aside class="notes">
+                        I'm here to talk a little about responsive images. I have to squeeze in over 2 years of discussions into a 10 minutes
+                        presentation, so I'm gonna give it a try :)
+                    </aside>
 				</section>
                 <section>
                     <h2>In the begining - mobile only sites</h2>
                     <p><img src="resources/cnn-regular-vs-mobile1.jpg"></p>
+                    <aside class="notes">
+                        <p>Mid 2000s, mobile only sites. Very light weight.</p>
+                        <p>iPhone, slightly more content, but still mobile-only</p>
+                    </aside>
                 </section>
                 <section>
                     <h2>Then - RWD happened</h2>
                     <p><img src="resources/mashable-responsive-design.jpg"></p>
+                    <aside class="notes">
+                        <p>RWD became a thing</p>
+                        <p>One code base to rule them all</p>
+                        <p>Awesome</p>
+                    </aside>
 				</section>
                 <section>
                     <h2>Followed by
                     <span class="fragment" style="font-size: 2em">BLOAT!!!</></h2>
                     <p><img src="resources/bloat.jpg"></p>
+                    <aside class="notes">
+                        <p>Mobile experience became better, but slower</p>
+                    </aside>
                 </section>
                 <section>
-                    <h2>Images - over 60%</h2>
+                    <h2>WHY???</h2>
+                    <h4>Images - over 60%</h4>
                     <p><img src="resources/httparchive_images.png"></p>
                     <p><small><a href="http://httparchive.org">httparchive.org</a></small></p>
                 </section>
                 <section>
-                    <h3>72% of responsive sites serves the same content to all devices</h3>
+                    <h3>Serving same resources</h3>
+                    <h4>72% of responsive sites</h4>
                     <p><img src="resources/trend-page-size-small-vs-big.png" height=300px></p>
                     <p><small><a href="http://www.guypo.com/uncategorized/real-world-rwd-performance-take-2/">guypo.com</a></small></p>
+                    <aside class="notes">
+                        <p>Serving the same resources to mobile and desktop hurts performance</p>
+                        <p>On mobile the images are much smaller and some of them are not even displayed</p>
+                    </aside>
                 </section>
                 <section>
-                    <h3>Up to&trade; 72% image data savings</h3>
+                    <h3>How much can be saved?</h3>
+                    <h4>Up to&trade; 72% image data savings</h3>
                     <p><img src="resources/sizerSoze-savings.png"></p>
                     <small><a href="http://timkadlec.com/2013/06/why-we-need-responsive-images/">tkadlec.com</a></small>
                 </section>
                 <section>
                     <h3>Retina only increases these gaps</h3>
                     <p><img src="resources/retina-display-vs-normal-display1.png"></p>
+                    <aside class="notes">
+                        <p>Devs can choose between HQ and LQ for everybody</p>
+                        <p>Usually pick HQ</p>
+                    </aside>
                 </section>
                 <section>
-                    <h2>Different use cases</h2>
+                    <h2>Responsive Images Problem</h2>
+                    <h4>Different use cases</h4>
                 </section>
                 <section>
                     <h2>Resolution switching</h2>
+                    <p>Serving different image dimensions to different devices</p>
                     <ul>
                         <li class=fragment>Not (only) a retina problem</li>
                         <li class=fragment>Narrow viewports suffer as well</li>
                     </ul>
+                    <aside class="notes">
+                        <p>Image resources only differ in quality. proportions stay the same</p>
+                    </aside>
                 </section>
                 <section>
                     <p><img src="resources/fundraise.png"></p>
@@ -95,16 +126,25 @@
                 <section>
                     <h3>viewport switching</h3>
                     Sending images adapted to their display dimensions
+                    <aside class="notes">
+                        For both res switching, browser should be able to serve lower res resources
+                    </aside>
                 </section>
                 <section>
                     <h2>Art Direction</h2>
                     <p>Getting images to match layout</p>
                     <p><img src="resources/w3c_resp_img_art_direction.jpg"></p>
+                    <aside class="notes">
+                        Fit layout and optimal content without wasting bytes
+                    </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
                         ![](resources/respimg_survey.png)
                     </script>
+                    <aside class="notes">
+                        40% of devs want art direction
+                    </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
