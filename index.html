@@ -73,13 +73,7 @@
                 </section>
                 <section>
                     <h2>WHY???</h2>
-                    <h4>Images - over 60%</h4>
-                    <p><img src="resources/httparchive_images.png"></p>
-                    <p><small><a href="http://httparchive.org">httparchive.org</a></small></p>
-                </section>
-                <section>
-                    <h3>Serving same resources</h3>
-                    <h4>72% of responsive sites</h4>
+                    <h3>72% Serve same resources</h3>
                     <p><img src="resources/trend-page-size-small-vs-big.png" height=300px></p>
                     <p><small><a href="http://www.guypo.com/uncategorized/real-world-rwd-performance-take-2/">guypo.com</a></small></p>
                     <aside class="notes">
@@ -88,10 +82,19 @@
                     </aside>
                 </section>
                 <section>
-                    <h3>How much can be saved?</h3>
-                    <h4>Up to&trade; 72% image data savings</h3>
+                    <h2>Which resources?</h2>
+                    <h3>Images - over 60%</h3>
+                    <p><img src="resources/httparchive_images.png"></p>
+                    <p><small><a href="http://httparchive.org">httparchive.org</a></small></p>
+                </section>
+                <section>
+                    <h2>How much can be saved?</h2>
+                    <h3>Up to&trade; 72% image data savings</h4>
                     <p><img src="resources/sizerSoze-savings.png"></p>
                     <small><a href="http://timkadlec.com/2013/06/why-we-need-responsive-images/">tkadlec.com</a></small>
+                    <aside class="notes">
+                        A small utility I cooked up and Tim Kadlec wrote about showed 72% data savings
+                    </aside>
                 </section>
                 <section>
                     <h3>Retina only increases these gaps</h3>
@@ -103,15 +106,11 @@
                 </section>
                 <section>
                     <h2>Responsive Images Problem</h2>
-                    <h4>Different use cases</h4>
+                    <h3>2 major use cases</h3>
                 </section>
                 <section>
                     <h2>Resolution switching</h2>
                     <p>Serving different image dimensions to different devices</p>
-                    <ul>
-                        <li class=fragment>Not (only) a retina problem</li>
-                        <li class=fragment>Narrow viewports suffer as well</li>
-                    </ul>
                     <aside class="notes">
                         <p>Image resources only differ in quality. proportions stay the same</p>
                     </aside>
@@ -150,10 +149,14 @@
                     <script type="text/template">
                         ## Proposed (standard) Solutions
 
-                        * ``` <picture> ``` element
                         * ```srcset``` attribute
+                        * ``` <picture> ``` element
                         * Client-Hints header
+                        * Responsive Image Container ???
                     </script>
+                    <aside class="notes">
+                        We've covered the problem. Now let's move to the solutions.
+                    </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
@@ -162,6 +165,11 @@
                         * Extends `<img>` to include multiple resources
                         * Addresses mainly resolution switching
                     </script>
+                    <aside class="notes">
+                        <p>The good old img tag, now with extra attributes!!!</p>
+                        <p>Mainly res-switch, because browser can override</p>
+                        <p>Browser can override means "browser can optimize"</p>
+                    </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
@@ -172,7 +180,7 @@
                                  srcset="cat.1x.jpg 1x,
                                          cat.2x.jpg 2x">
                         ```
-                        <p>Implemented in WebKit and ¿Blink?</p>
+                        <p>Implemented in WebKit and Blink</p>
                         <p>Firefox will soon follow</p>
                     </script>
                 </section>
@@ -189,55 +197,73 @@
                                          cat 4x.jpg 1x 1280w">
                         ```
                     </script>
+                    <aside class="notes">
+                        <p>I have a feeling the viewport switching implementation is not far behind.</p>
+                        <p>"I have a feeling" == "I intend to implement it"</p>
+                    </aside>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
                         ## &lt;picture&gt;
 
-                        * Child `<source>` elements - mirror  `<img>`
-                        * Each `<source>` loads a certain art-directed image
+                        * Targeted at art-direction
+                        * Specifies resources using `<source>` and MQs
+                        * First matching resource downloaded and displayed
                     </script>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
-                        ## Art direction using picture
+                        ### Art direction using picture
 
                          ```
                         <picture>
-                            <source media="screen and (max-width:400px)"
-                                    srcset="narrow1x.jpg 1x, 
-                                            narrow2x.jpg 2x"> 
-                            <source media="screen and (max-width:800px)"
-                                    srcset="middle1x.jpg 1x, 
-                                            middle2x.jpg 2x"> 
-                            <source media="screen and (max-width:1600px)"
+                            <source media="screen and (min-width:1600px)"
                                     srcset="wide1x.jpg 1x, 
                                             wide2x.jpg 2x"> 
+                            <source media="screen and (min-width:800px)"
+                                    srcset="middle1x.jpg 1x, 
+                                            middle2x.jpg 2x"> 
+                            <source media="screen and (min-width:400px)"
+                                    srcset="narrow1x.jpg 1x, 
+                                            narrow2x.jpg 2x"> 
+                            <source srcset="tiny1x.jpg 1x, 
+                                            tiny2x.jpg 2x"> 
                             <img src="fallback.jpg">
                         </picture>
                          ```
->
                     </script>
                 </section>
                 <section>
                     <h2>Client Hints</h2>
                     <ul>
                         <li>HTTP based content-negotiation solution</li>
-                        <li>Server side</li>
+                        <li>Client sends hints/capabilities</li>
+                        <li>Server side logic decides on resource</li>
                     </ul>
                 </section>
                 <section data-markdown>
                     <script type="text/template">
-                        ## Proposed request headers
+                        ### Proposed request headers
 
                          ```
                             CH-DPR: 2.0
+                            CH-VW: 2.0
+                            CH-VH: 2.0
                             CH-OtherVar: x.x
                          ```
                     </script>
                 </section>
                 <section>
+                    <h3>Opt-in only</h3>
+                    <p>Not sent on first HTML request</p>
+                </section>
+                <section>
                     <h2>Responsive Image Container</h2>
+                    <ul>
+                        <li>File format approach</li>
+                        <li>A "layer" per resolution</li>
+                        <li>Both resolution switching and art-direction</li>
+                    </ul>
                 </section>
                 <section>
                     <h3>Resolution switching</h3>
@@ -280,30 +306,40 @@
                     <p>770x512</p>
                 </section>
                 <section>
-                    <h2>Advantages</h2>
+                    <h3>Advantages</h3>
                     <ul>
                         <li class="fragment">Markup left untouched</li>
                         <li class="fragment">A single file per image</li>
                         <li class="fragment">Better for post-download dimensions changes</li>
                     </ul>
+                    <aside class="notes">
+                        <p>No markup</p>
+                        <p>single file</p>
+                        <p>can download diff</p>
+                    </aside>
                 </section>
                 <section>
-                    <h2>disadvantages</h2>
+                    <h3>disadvantages</h3>
                     <ul>
                         <li class="fragment">Touches many layers. Will take time</li>
                         <li class="fragment">Decoding performance???</li>
                         <li class="fragment">Fetching mechanism network performance???</li>
                     </ul>
+                    <aside class="notes">
+                        <p>complicated</p>
+                        <p>decoding perf?</p>
+                        <p>Fetching mechanism</p>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Questions?</h2>
                 </section>
                 <section>
                     <h1>Thanks!</h1>
                     <div style="text-decoration: underline; margin-top: 100px;">Attribution</div>
-                    RWD - http://www.flickr.com/photos/axbom/6263640150/sizes/o/in/photostream/
-                    Bloat - http://www.flickr.com/photos/lorenjavier/5013332959/sizes/l/in/photostream/
-                    CNN - http://mobile.smashingmagazine.com/2010/11/03/how-to-build-a-mobile-website/
-                </section>
-                <section>
-                    <h2>Questions?</h2>
+                    <p><small>RWD - http://www.flickr.com/photos/axbom/6263640150/sizes/o/in/photostream/</small></p>
+                    <p><small>Bloat - http://www.flickr.com/photos/lorenjavier/5013332959/sizes/l/in/photostream/</small></p>
+                    <p><small>CNN - http://mobile.smashingmagazine.com/2010/11/03/how-to-build-a-mobile-website/</small></p>
                 </section>
                 <!--
 				<section>
