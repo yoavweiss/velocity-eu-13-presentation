@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -34,51 +34,48 @@
 
 		<div class="reveal">
 
-            <!--
-Why?
-Bandwidth savings
-Decoding+resizing speed
-
-Use cases:
-
-Current techniques
-LQIP - Akamai
-Cookie based - Adaptive images
-Capturing - Mobify
-Compressive images
-Picturefill
-x-picture
-bandwidth testing - foresight.js
-RespImg services
-CMSs
-
-How do you test?
-Performance budget
-SizerSoze
-
-The future!
-srcset
-picture
-srcN
-Client-Hints
-
-
-
--->
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>The Responsive Images Saga</h1>
+					<h1>Responsive Images Techniques and Beyond</h1>
                     <a href="https://twitter.com/yoavweiss">Yoav Weiss</a>
-                    <p>Edge - NYC, September 2013</p>
-                    <p><a href="https://yoavweiss.github.io/respimg-edge-presentation/">yoavweiss.github.io/respimg-edge-presentation</a></p>
+                    <p>Velcority EU - London, November 2013</p>
+                    <p><a href="https://yoavweiss.github.io/velocity-eu-13-presentation/">yoavweiss.github.io/velocity-eu-13-presentation</a></p>
                     <aside class="notes">
-                        I'm here to talk a little about responsive images. I have to squeeze in over 2 years of discussions into a 10 minutes
-                        presentation, so I'm gonna give it a try :)
+                        Hi,
+                        I'm here to talk about responsive images, why they're important and what you can do about it today.
+                        Then I'll also give an overview of what the future might look like
                     </aside>
 				</section>
                 <section>
+                    <h2>Who is this guy?</h2>
+                    <aside class="notes">
+                        Working on resonsive images in my spare time for the last 2 years
+                        RICG, Blink, WebKit
+                        implemented picture prototype, srcset
+                        Went over all the current techniques
+                        Here to share that roller-coaster journey
+                    </aside>
+                </section>
+                <section>
+                    <h2>Responsive images???</h2>
+                    <aside class="notes">
+                        who knows what the responsive image probem is?
+                    </aside>
+                </section>
+                <section>
+                    <h2>Why bother?</h2>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>A trip down memory lane</h2>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section>
                     <h2>In the begining - mobile only sites</h2>
+                    !!!WAP2 image!!! XHTML MP!!!
                     <p><img src="resources/cnn-regular-vs-mobile1.jpg"></p>
                     <aside class="notes">
                         <p>Mid 2000s, mobile only sites. Very light weight.</p>
@@ -95,7 +92,35 @@ Client-Hints
                     </aside>
 				</section>
                 <section>
-                    <h2>Followed by
+                    <h2>Images?</h2>
+                    <p class="fragment">Not a problem!</p>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    Send the largest image you'd ever need
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    Let the browser resize it
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    EAZZZZZZY!!!
+                    Animated GIF
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>Well...</h2>
+                    GIF
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>That approach led to
                     <span class="fragment" style="font-size: 2em">BLOAT!!!</></h2>
                     <p><img src="resources/bloat.jpg"></p>
                     <aside class="notes">
@@ -103,9 +128,8 @@ Client-Hints
                     </aside>
                 </section>
                 <section>
-                    <h2>WHY???</h2>
-                    <h3>72% Serve same resources</h3>
-                    <p><img src="resources/trend-page-size-small-vs-big.png" height=300px></p>
+                    <h2>72% Serve same resources</h2>
+                    <p><img src="2013-page-size-small-vs-big1.png" height=300px></p>
                     <p><small><a href="http://www.guypo.com/uncategorized/real-world-rwd-performance-take-2/">guypo.com</a></small></p>
                     <aside class="notes">
                         <p>Serving the same resources to mobile and desktop hurts performance</p>
@@ -114,13 +138,13 @@ Client-Hints
                 </section>
                 <section>
                     <h2>Which resources?</h2>
-                    <h3>Images - over 60%</h3>
+                    <p>Images - over 60%</p>
                     <p><img src="resources/httparchive_images.png"></p>
                     <p><small><a href="http://httparchive.org">httparchive.org</a></small></p>
                 </section>
                 <section>
                     <h2>How much can be saved?</h2>
-                    <h3>Up to&trade; 72% image data savings</h4>
+                    <p>Up to&trade; 72% image data savings</p>
                     <p><img src="resources/sizerSoze-savings.png"></p>
                     <small><a href="http://timkadlec.com/2013/06/why-we-need-responsive-images/">tkadlec.com</a></small>
                     <aside class="notes">
@@ -128,7 +152,7 @@ Client-Hints
                     </aside>
                 </section>
                 <section>
-                    <h3>Retina only increases these gaps</h3>
+                    <h2>Retina only increases these gaps</h2>
                     <p><img src="resources/retina-display-vs-normal-display1.png"></p>
                     <aside class="notes">
                         <p>Devs can choose between HQ and LQ for everybody</p>
@@ -136,8 +160,48 @@ Client-Hints
                     </aside>
                 </section>
                 <section>
+                    <h2>How can we measure?</h2>
+                    <a href="https://github.com/yoavweiss/Sizer-Soze">Sizer Soze</a>
+                    <aside class="notes">
+                        Following a grigs post, hacked together on a saturday morning
+                        We need to run a perf budget, with no way to measure waste
+                    </aside>
+				</section>
+                <section>
+                    <h2>SSASS!!!!</h2>
+                    <a href="http://sizersoze.org">sizersoze.org</a>
+                    <aside class="notes">
+                        Built with help of awesome people from the RICG and the Filament Group.
+                        Special thanks to Sven Read for the design and Jeff Lembeck for the frontend work.
+                    </aside>
+				</section>
+                <section>
+                    <h2>Demo time!</h2>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>Give it a try!</h2>
+                    <a href="http://sizersoze.org">sizersoze.org</a>
+                    <p class="fragment">But be gentle!<p>
+                    <aside class="notes">
+                        This is the first time this sees any kind of non-test traffic, so I expect it to choke :)
+                    </aside>
+				</section>
+                <section>
+                    <h2>If you want to help out</h2>
+                    <a href="https://github.com/yoavweiss/Sizer-Soze">github.com/yoavweiss/Sizer-Soze</a>
+                    <a href=https://github.com/ResponsiveImagesCG/Sizer-Soze-frontend/">github.com/ResponsiveImagesCG/Sizer-Soze-frontend</a>
+                    <aside class="notes">
+                        Very much in the "pet project" phase, so bug reports, etc will be appreciated
+                    </aside>
+				</section>
+                <section>
                     <h2>Responsive Images Problem</h2>
-                    <h3>2 major use cases</h3>
+                    <h2>2 major use cases</h2>
+                    <aside class="notes">
+                        Let's better define what we're talking about when we're talking about the "responsive images problem"
+                    </aside>
                 </section>
                 <section>
                     <h2>Resolution switching</h2>
@@ -150,11 +214,11 @@ Client-Hints
                     <p><img src="resources/fundraise.png"></p>
                 </section>
                 <section>
-                    <h3>DPR switching</h3>
+                    <h2>DPR switching</h2>
                     Sending retina images only to retina screens
                 </section>
                 <section>
-                    <h3>viewport switching</h3>
+                    <h2>viewport switching</h2>
                     Sending images adapted to their display dimensions
                     <aside class="notes">
                         For both res switching, browser should be able to serve lower res resources
@@ -176,6 +240,76 @@ Client-Hints
                         40% of devs want art direction
                     </aside>
                 </section>
+                <section>
+                    <h2>Other use cases</h2>
+                    <ul>
+                        <li>Monochrome</li>
+                        <li>Print</li>
+                        <li>Image format fallback<li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>Constraints</h2>
+                    Must play well with preloader
+                    <aside class="notes">
+                        Since the goal is performance afterall
+                    </aside>
+				</section>
+                <section>
+                    <h2>Use cases doc</h2>
+                    <a href="http://usecases.responsiveimages.org">usecases.responsiveimages.org</a>
+                    Released as a W3C note
+                    <aside class="notes">
+                        Check out the full use cases document if you want to learn more
+                    </aside>
+				</section>
+                <section>
+                    <h2>OK, bandwidth is important</h2>
+                    But It's getting better every year
+                    !!!!TROLL!!!
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>Decoding speed</h2>
+                    <aside class="notes">
+                        Bandwidth is not the only factor here
+                    </aside>
+				</section>
+            <!--
+Why?
+Bandwidth savings
+Decoding+resizing speed
+
+Use cases:
+
+Current techniques
+LQIP - Akamai
+Cookie based - Adaptive images
+Capturing - Mobify
+Compressive images
+Picturefill
+x-picture
+bandwidth testing - foresight.js
+RespImg services
+CMSs
+NavigationController
+
+How do you test?
+Performance budget
+SizerSoze
+
+The future!
+srcset
+picture
+srcN
+Client-Hints
+
+
+
+-->
                 <section data-markdown>
                     <script type="text/template">
                         ## Proposed (standard) Solutions

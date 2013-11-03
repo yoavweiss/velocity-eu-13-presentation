@@ -19,7 +19,7 @@ journey :)
 So let's start with the basics. How many of you know what the responsive
 problem is? (show of hands) 
 
-Let's start with the basics? Why bother?
+Why is the responsive images subject so close to my heart?
 
 When RWD first became a thing, image handling was simply "let the
 browser downsize the largest image you'd need and you'll be fine".
