@@ -758,7 +758,7 @@ Some reveal.js features, like external markdown, require that presentations run 
 
 4. Clone the reveal.js repository
 ```
-$ git clone git@github.com:hakimel/reveal.js.git
+$ git clone https://github.com/hakimel/reveal.js.git
 ```
 
 5. Navigate to the reveal.js folder
@@ -778,6 +778,8 @@ $ grunt serve
 
 8. Open <http://localhost:8000> to view your presentation
 
+You can change the port by using `grunt serve --port 8001`.
+
 
 ### Folder Structure
 - **css/** Core styles without which the project does not function
@@ -785,6 +787,21 @@ $ grunt serve
 - **plugin/** Components that have been developed as extensions to reveal.js
 - **lib/** All other third party assets (JavaScript, CSS, fonts)
 
+
+### Contributing
+
+Please keep the [issue tracker](http://github.com/hakimel/reveal.js/issues) limited to **bug reports**, **feature requests** and **pull requests**. If you are reporting a bug make sure to include information about which browser and operating system you are using as well as the necessary steps to reproduce the issue.
+
+If you have personal support questions use [StackOverflow](http://stackoverflow.com/questions/tagged/reveal.js).
+
+
+#### Pull requests
+
+- Should follow the coding style of the file you work in, most importantly:
+  - Tabs to indent
+  - Single-quoted strings
+- Should be made towards the **dev branch**
+- Should be submitted from a feature/topic branch (not your master)
 
 
 ## License
