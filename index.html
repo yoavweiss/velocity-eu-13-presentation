@@ -224,7 +224,7 @@
                 <section>
                     <h2>Give it a try!</h2>
                     <p><a href="http://sizersoze.org">sizersoze.org</a></p>
-                    <p class="fragment">But be gentle!</p>
+                    <p class="fragment">But please be patient!</p>
                     <aside class="notes">
                         This is the first time this sees any kind of non-test traffic, so I expect it to choke :)
                     </aside>
@@ -253,20 +253,24 @@
 				</section>
                 <section>
                     <h2>Decoding speed impact</h2>
-                    @tkadlec says x10
-                    complexity is O(N^2)
+                    <ul>
+                        <li class="fragment">x2 images take x? to decode</li>
+                        <li class="fragment">x6 images take x??? to decode</li>
+                    </ul>
+                    <p class="fragment"><small><a href="http://timkadlec.com/2013/11/why_we_need_responsive_images_part_deux">tkadlec.com</a></small></p>
                     <aside class="notes">
                     </aside>
 				</section>
                 <section>
                     <h2>Resize impact</h2>
-                    x100
-                    There's not enough data on the perf impact here
-                    Probably not linear, so any resize hurts. Bad.
-                    May or may not be linear.
-                    AFAIK, browsers don't do codec level resize, so x2 doesn't help.
-                    Not enough data on the subject.
-                    @aerotwist says that very small resizes are treated differently
+                    <ul>
+                        <li class="fragment">An order of magnitude slower</li>
+                        <li class="fragment">x2 images take x? to decode</li>
+                        <li class="fragment">x6 images take x??? to decode</li>
+                        <li class="fragment">Need more data!</li>
+                        <li class="fragment">Very small resizes can be handled differently</li>
+                    </ul>
+                    <p class="fragment"><small><a href="http://timkadlec.com/2013/11/why_we_need_responsive_images_part_deux">tkadlec.com</a></small></p>
                     <aside class="notes">
                     </aside>
 				</section>
