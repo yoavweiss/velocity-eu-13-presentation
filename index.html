@@ -67,14 +67,14 @@
                 </section>
                 <section>
                     <h2>Responsive images problem</h2>
-                    <p class="fragment">Load properly dimensioned images that fit the page's design</p>
+                    <p class="fragment">Load properly dimensioned images that fit the page's design in an efficient manner</p>
                     <aside class="notes">
                         who knows what the responsive image probem is?
                     </aside>
                 </section>
                 <section>
                     <h2>Why bother?</h2>
-                    <img src="resources/troll_small.png">
+                    <img src="resources/troll_tiny.png">
                     <aside class="notes">
                     </aside>
 				</section>
@@ -172,6 +172,7 @@
                 </section>
                 <section>
                     <h2>Retina only increases these gaps</h2>
+                    <p>The difference between low end, small devices and high-end wide devices increases</p>
                     <p><img src="resources/retina-display-vs-normal-display1.png"></p>
                     <aside class="notes">
                         <p>Devs can choose between HQ and LQ for everybody</p>
@@ -192,6 +193,12 @@
                     </aside>
 				</section>
                 <section>
+                    <h2>What??</h2>
+                    <p>Measures the difference between current images &amp; perfectly sized images</p>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
                     <h2>How does it work?</h2>
                     <ul>
                         <li class="fragment">Download a page using phantomJS</li>
@@ -202,7 +209,7 @@
                     </aside>
 				</section>
                 <section>
-                    <h2>SSASS!!!!</h2>
+                    <h2>SSAAS</h2>
                     <a href="http://sizersoze.org">sizersoze.org</a>
                     <aside class="notes">
                         Built with help of awesome people from the RICG and the Filament Group.
@@ -234,7 +241,7 @@
                     <h2>OK, bandwidth is important</h2>
                     <p>But It's getting better every year</p>
                     <p>Soon this whole issue will go away</p>
-                    <p><img src="resources/troll_small.png"></p>
+                    <p><img src="resources/troll_tiny.png"></p>
                     <aside class="notes">
                     </aside>
 				</section>
@@ -341,6 +348,7 @@
                     </aside>
                 </section>
                 <section>
+                    ?????Talk about survey???
                     <img src="resources/respimg_survey.png">
                     <aside class="notes">
                         Survey - 40% of devs hack their images to do art direction
@@ -373,7 +381,7 @@
                 <section>
                     <h2>Use cases doc</h2>
                     <a href="http://usecases.responsiveimages.org">usecases.responsiveimages.org</a>
-                    Released as a W3C WG note
+                    <p>Released as a W3C WG note</p>
                     <aside class="notes">
                         Check out the full use cases document if you want to learn more
                         We got upgraded, since there's no CG note
@@ -401,9 +409,9 @@
                 <section>
                     <h2>AKA</h2>
                     <ul>
-                        <li>PreloadScanner</li>
-                        <li>Speculative parser</li>
-                        <li>Look-ahead scanner</li>
+                        <li class="fragment">PreloadScanner</li>
+                        <li class="fragment">Speculative parser</li>
+                        <li class="fragment">Look-ahead scanner</li>
                     </ul>
                     <aside class="notes">
                     </aside>
@@ -543,9 +551,11 @@ document.cookie = 'width=' + screen.width +
                     <h2>Disadvantages</h2>
                     <ul>
                         <li class="fragment">On first page load, user will get wrong image</li>
-                        <li class="fragment">Cachebility - There is none</li>
+                        <li class="fragment">Cachebility issues</li>
+                        <li class="fragment">Same domain restriction</li>
                         <li class="fragment">Server side solution which may or may not fit your stack</li>
                         <li class="fragment">Server-side logic/directory structure to map viewport dimensions to image dimensions</li>
+                        <li class="fragment">Resizes are not taken into account</li>
                     </ul>
                     <aside class="notes">
                     </aside>
@@ -871,58 +881,15 @@ document.cookie = 'width=' + screen.width +
                     </aside>
 				</section>
                 <section>
-                    <h2>To sum up</h2>
+                    <h2>Performance take-aways</h2>
                     <ul>
                         <li class="fragment">Using <code>src</code> results in a download</li>
                         <li class="fragment">Start downloading images ASAP</li>
-                        <li class="fragment">Measure perf impact</li>
-                        memory impact is hard to quantify
-                        scrolling speed
-                        BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        <li class="fragment">Measure perf impact: network, memory and decoding</li>
                     </ul>
                     <aside class="notes">
                     </aside>
 				</section>
-            <!--
-Use cases:
-
-Current techniques
-LQIP - Akamai
-Capturing - Mobify
-Picturefill
-x-picture
-srcset polyfills
-Compressive images
-
-
-bandwidth testing - foresight.js
-Waiting for layout - scalabled.js Let's load images after onload
-
-BBC's solution - imager; Each image has its dimensions as data attr (well maybe? Looks like it's just the spacer GIFs width.)
-LQ image is always loaded, but not displayed when JS is on.
-Upon requestAnimationFrame, all dom images get replaced to the larger images. then at resize.
-
-RespImg services
-CMSs
-grunt-responsive-images
-NavigationController
-
-
-What are the questions you should ask yourself when deciding on a RespImg solution?
-
-How do you test?
-Performance budget
-SizerSoze
-
-The future!
-srcset
-picture
-srcN
-Client-Hints
-
-
-
--->
                 <section>
                     <h2>Proposed standard Solutions</h2>
                     <ul>
@@ -939,8 +906,9 @@ Client-Hints
                 <section>
                     <h2>srcset</h2>
                     <ul>
-                        <li>Extends <code>&lt;img&gt;</code> to include multiple resources</li>
-                        <li>Addresses mainly resolution switching</li>
+                        <li class="fragment">Proposed by Apple, adopted by the WHATWG</li>
+                        <li class="fragment">Extends <code>&lt;img&gt;</code> to include multiple resources</li>
+                        <li class="fragment">Addresses mainly resolution switching</li>
                     </ul>
                     <aside class="notes">
                         <p>The good old img tag, now with extra attributes!!!</p>
@@ -954,8 +922,8 @@ Client-Hints
                     <pre><code>&lt;img src="cat.1X.jpg"
      srcset="cat.1x.jpg 1x,
              cat.2x.jpg 2x"&gt;</code></pre>
-                        <p>Implemented in WebKit and Blink</p>
-                        <p>Future is in flux</p>
+                        <p>Implemented (not yet shipped) in WebKit and Blink</p>
+                        <p>Rough consensus around the syntax</p>
                     </script>
                 </section>
                 <section>
@@ -966,15 +934,18 @@ Client-Hints
              cat.2x.jpg 1x 640w,
              cat.4x.jpg 2x 640w,
              cat 4x.jpg 1x 1280w"&gt;</code></pre>
+                    <p>Not many fans for this part of the syntax</p>
                     <aside class="notes">
                     </aside>
                 </section>
                 <section>
                     <h2><code>&lt;picture&gt;</code></h2>
                     <ul>
-                        <li>Targeted at art-direction</li>
-                        <li>Specifies resources using <code>&lt;source&gt;</code> and MQs</li>
-                        <li>First matching resource downloaded and displayed</li>
+                        <li class="fragment">Proposed by Bruce Lawson, adopted by RICG</li>
+                        <li class="fragment">Adopts <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> markup patterns</li>
+                        <li class="fragment">Targeted at art-direction</li>
+                        <li class="fragment">Specifies resources using <code>&lt;source&gt;</code> and MQs</li>
+                        <li class="fragment">First matching resource downloaded and displayed</li>
                     </ul>
                 </section>
                 <section>
@@ -996,6 +967,10 @@ Client-Hints
                 </section>
                 <section>
                     <h2>src-N</h2>
+                    <ul>
+                        <li class="fragment">Proposed by Tab Atkins and John Mellor</li>
+                        <li class="fragment">Got the RICG's support</li>
+                    </ul>
                     <aside class="notes">
                     Tab Atkins' and John Mellor's proposal
                     Pretty soon got the RICG's support behind it
@@ -1003,8 +978,8 @@ Client-Hints
                     </aside>
 				</section>
                 <section>
-                    <h2>x-urls</h2>
-                    srcset's DPR syntax
+                    <h2>src-N's DPR switching</h2>
+                    <p>x-urls - Basically srcset's DPR syntax</p>
                     <aside class="notes">
                     </aside>
 				</section>
@@ -1016,7 +991,7 @@ Client-Hints
                     </aside>
 				</section>
                 <section>
-                    <h2>Art direction</h2>
+                    <h2>src-N's art direction</h2>
                     Multiple attributes, each can start with an MQ
                     <aside class="notes">
                         Picture's source elements squeezed into attributes
@@ -1040,8 +1015,8 @@ Client-Hints
                 <section>
                     <h2>Composed of</h2>
                     <ul>
-                        <li>Breakpoint definition</li>
-                        <li>Resource &amp; dimension list</li>
+                        <li class="fragment">Breakpoint definition</li>
+                        <li class="fragment">Resource &amp; dimension list</li>
                     </ul>
                     <aside class="notes">
                     </aside>
@@ -1065,6 +1040,21 @@ Client-Hints
                     </aside>
 				</section>
                 <section>
+                    <h2>Breakpoint definition</h2>
+                    <p>Officially: size-viewport-list</p>
+                    <pre><code>100% (640px) 50% (960px) 33%;</code></pre>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
+                    <h2>Resource &amp; dimension list</h2>
+                    <p>Officially: size-based-urls</p>
+                    <pre><code> 160.jpg 160, 320.jpg 320, 480.jpg 480, 640.jpg 640, 
+            960.jpg 960, 1280.jpg 1280, 1920.jpg 1920</code></pre>
+                    <aside class="notes">
+                    </aside>
+				</section>
+                <section>
                     <h2>Multiple breakpoints with srcset</h2>
                     <br>
                     <pre><code>&lt;img srcset="
@@ -1084,9 +1074,10 @@ Client-Hints
                 <section>
                     <h2>Client Hints</h2>
                     <ul>
-                        <li>HTTP based content-negotiation solution</li>
-                        <li>Client sends hints/capabilities</li>
-                        <li>Server side logic decides on resource</li>
+                        <li class="fragment">Proposed by Ilya Grigorik</li>
+                        <li class="fragment">HTTP based content-negotiation solution</li>
+                        <li class="fragment">Client sends hints/capabilities</li>
+                        <li class="fragment">Server side logic decides on resource</li>
                     </ul>
                 </section>
                 <section>
@@ -1100,7 +1091,7 @@ Client-Hints
                 <section>
                     <h2>CH-RW</h2>
                     Resource Width
-                    Enabled mainly by src-N
+                    <p>Implicitly relies on src-N's viewport-url </p>
                 </section>
                 <section>
                     <h2>Response headers</h2>
@@ -1121,9 +1112,9 @@ Client-Hints
                 <section>
                     <h2>Responsive Image Container</h2>
                     <ul>
-                        <li>File format approach</li>
-                        <li>A "layer" per resolution</li>
-                        <li>Both resolution switching and art-direction</li>
+                        <li class="fragment">File format approach</li>
+                        <li class="fragment">A "layer" per resolution</li>
+                        <li class="fragment">Both resolution switching and art-direction</li>
                     </ul>
                 </section>
                 <section>
