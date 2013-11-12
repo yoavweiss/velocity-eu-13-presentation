@@ -94,7 +94,7 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Then - iPhone</h2>
+                    <h2>Followed by - iPhone</h2>
                     <p><img src="resources/cnn-regular-vs-mobile1.jpg"></p>
                     <aside class="notes">
                     </aside>
@@ -171,15 +171,6 @@
                     </aside>
                 </section>
                 <section>
-                    <h2>Retina only increases these gaps</h2>
-                    <p>The difference between low end, small devices and high-end wide devices increases</p>
-                    <p><img src="resources/retina-display-vs-normal-display1.png"></p>
-                    <aside class="notes">
-                        <p>Devs can choose between HQ and LQ for everybody</p>
-                        <p>Usually pick HQ</p>
-                    </aside>
-                </section>
-                <section>
                     <h2>How can we measure?</h2>
                     <aside class="notes">
                         We need to run a perf budget, with no way to measure waste
@@ -224,7 +215,7 @@
                 <section>
                     <h2>Give it a try!</h2>
                     <p><a href="http://sizersoze.org">sizersoze.org</a></p>
-                    <p class="fragment">But please be patient!</p>
+                    <p class="fragment">Later... and please be patient!</p>
                     <aside class="notes">
                         This is the first time this sees any kind of non-test traffic, so I expect it to choke :)
                     </aside>
@@ -237,6 +228,15 @@
                         Very much in the "pet project" phase, so bug reports, etc will be appreciated
                     </aside>
 				</section>
+                <section>
+                    <h2>Retina only increases these gaps</h2>
+                    <p>The difference between low end, small devices and high-end wide devices increases</p>
+                    <p><img src="resources/retina-display-vs-normal-display1.png"></p>
+                    <aside class="notes">
+                        <p>Devs can choose between HQ and LQ for everybody</p>
+                        <p>Usually pick HQ</p>
+                    </aside>
+                </section>
                 <section>
                     <h2>OK, bandwidth is important</h2>
                     <p>But It's getting better every year</p>
@@ -254,8 +254,8 @@
                 <section>
                     <h2>Decoding speed impact</h2>
                     <ul>
-                        <li class="fragment">x2 images take x? to decode</li>
-                        <li class="fragment">x6 images take x??? to decode</li>
+                        <li class="fragment">x2 images take x2 to decode</li>
+                        <li class="fragment">x6 images take x15-x23 (!!!) to decode</li>
                     </ul>
                     <p class="fragment"><small><a href="http://timkadlec.com/2013/11/why_we_need_responsive_images_part_deux">tkadlec.com</a></small></p>
                     <aside class="notes">
@@ -264,11 +264,7 @@
                 <section>
                     <h2>Resize impact</h2>
                     <ul>
-                        <li class="fragment">An order of magnitude slower</li>
-                        <li class="fragment">x2 images take x? to decode</li>
-                        <li class="fragment">x6 images take x??? to decode</li>
-                        <li class="fragment">Need more data!</li>
-                        <li class="fragment">Very small resizes can be handled differently</li>
+                        <li class="fragment">More or less the same time as decoding</li>
                     </ul>
                     <p class="fragment"><small><a href="http://timkadlec.com/2013/11/why_we_need_responsive_images_part_deux">tkadlec.com</a></small></p>
                     <aside class="notes">
@@ -317,7 +313,7 @@
 				</section>
                 <section>
                     <h2>Responsive Images Problem</h2>
-                    <h2>2 major use cases</h2>
+                    <h3>2 major use cases</h3>
                     <aside class="notes">
                         Let's better define what we're talking about when we're talking about the "responsive images problem"
                     </aside>
@@ -352,7 +348,6 @@
                     </aside>
                 </section>
                 <section>
-                    ?????Talk about survey???
                     <img src="resources/respimg_survey.png">
                     <aside class="notes">
                         Survey - 40% of devs hack their images to do art direction
@@ -376,7 +371,7 @@
                     </aside>
 				</section>
                 <section>
-                    <h2>Constraints</h2>
+                    <h2>Solution constraints</h2>
                     Must play well with preloader
                     <aside class="notes">
                         Since the goal is performance afterall
@@ -677,6 +672,11 @@ document.cookie = 'width=' + screen.width +
                 <section>
                     <h2>x-picture</h2>
                     Web components based solution
+                    <ul>
+                        <li class="fragment">Web components based <code>&lt;picture&gt;</code> polyfill</li>
+                        <li class="fragment">Image download triggered when element is parsed (in supporting browsers)</li>
+                        <li class="fragment">Depends on polymer</li>
+                    </ul>
                     <aside class="notes">
                     </aside>
 				</section>
@@ -700,23 +700,6 @@ document.cookie = 'width=' + screen.width +
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                 </section>
-                <section>
-                    <h2>Advantages vs. Picturefill</h2>
-                    <ul>
-                        <li class="fragment">Slightly less verbose</li>
-                        <li class="fragment">Image download can start as soon the the image is parsed (in supporting browsers)</li>
-                    </ul>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>Disadvantages vs. Picturefill</h2>
-                    <ul>
-                        <li class="fragment">Depends on Polymer</li>
-                    </ul>
-                    <aside class="notes">
-                    </aside>
-				</section>
                 <section>
                     <h2>Mobify.js</h2>
                     A whole new level of Bat-sh*t-loco-insane™ hack
@@ -760,18 +743,6 @@ document.cookie = 'width=' + screen.width +
                         <li class="fragment">Compatibility issues</li>
                         <li class="fragment">Lots of invasive JS may be hard on legacy devices</li>
                         <li class="fragment">JS failure after plaintext injection can result in a blank page</li>
-                    </ul>
-                    <aside class="notes">
-                    </aside>
-				</section>
-                <section>
-                    <h2>BBC - imager.js</h2>
-                    A mix-and-match of previous techniques
-                    <ul>
-                        <li class="fragment">A fallback low-quality image</li>
-                        <li class="fragment">Uses RAF to poll for DOM changes</li>
-                        <li class="fragment">Waits until layout to download</li>
-                        <li class="fragment">Page resize may trigger resource change</li>
                     </ul>
                     <aside class="notes">
                     </aside>
@@ -887,7 +858,8 @@ document.cookie = 'width=' + screen.width +
                 <section>
                     <h2>Performance take-aways</h2>
                     <ul>
-                        <li class="fragment">Using <code>src</code> results in a download</li>
+                        <li class="fragment">Using <code>src</code> results in a double download</li>
+                        <li class="fragment">Not using <code>src</code> means fallback is not guarantied</li>
                         <li class="fragment">Start downloading images ASAP</li>
                         <li class="fragment">Measure perf impact: network, memory and decoding</li>
                     </ul>
@@ -1104,8 +1076,8 @@ document.cookie = 'width=' + screen.width +
 				</section>
                 <section>
                     <h2>DPR</h2>
-                    Server confirmation header
-                    Used for intrinsic image sizing
+                    <p>Server confirmation header</p>
+                    <p>Used for intrinsic image sizing</p>
                     <aside class="notes">
                     </aside>
 				</section>
